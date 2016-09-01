@@ -1,0 +1,48 @@
+package com.gaurav.MiniProject;
+
+/* This code fetches the properties of database configuration from properties file */
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class Properties_File
+{
+	String dburl;
+	String user;
+	String pswd;
+	Properties_File()
+	{
+	Properties pro = new Properties();
+	try {
+		pro.load(new FileInputStream("C:/DbConfiguration.properties"));
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+	 dburl = pro.getProperty("dburl"); //Fetching the databse url
+	 user = pro.getProperty("user"); // Fetching the database user name
+	 pswd = pro.getProperty("pswd"); // Fetching the database password
+	
+
+	
+	}
+	String getUrl(){
+		return dburl;
+	}
+	String getUser(){
+		return user;
+	}
+	String getPassword(){
+		return pswd;
+	}
+}
