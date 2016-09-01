@@ -1,0 +1,33 @@
+package com.gaurav.MiniProject;
+
+import java.security.MessageDigest;
+import java.sql.*;
+import javax.crypto.*;
+public class CheckDb
+{
+	public static void main(String args[]) throws Exception, GenericException{
+		DbConnection conn = DbConnection.getInstance();
+		Connection con = conn.getConnection();
+		/*CallableStatement cs = con.prepareCall("{call INSERT_Employee(?,?,?,?,?,?,?,?,?,?)}");
+		cs.setString(1,"Vikash");
+		cs.setString(2,"");
+		cs.setString(3,"Gupta");
+		cs.setInt(4,11);
+		cs.setString(5, "02-NOV-1996");
+		cs.setString(6, "Kanpur");
+		cs.setString(7, "Male");
+		cs.setInt(8,89999);
+		cs.setInt(9, 1);
+		cs.setInt(10,1);
+		if(!cs.execute()){
+			System.out.println("Statement executed!!");
+		}*/
+		
+		int i = 0;
+		if(i==0)
+			throw new GenericException("Value is 0");
+		System.out.println("Awed");
+		
+	}
+	
+}
