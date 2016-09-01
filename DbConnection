@@ -1,0 +1,54 @@
+package com.gaurav.MiniProject;
+
+// This file basically provides the connection object to the calling class using singleton pattern. 
+
+import java.sql.*;
+public class DbConnection
+{
+
+
+	private static DbConnection DbConnect = null;
+	public static Connection con = null;
+	private DbConnection(){
+		
+	}
+	
+	public static DbConnection getInstance(){
+		if(DbConnect == null){
+			DbConnect = new DbConnection(); // creating single instance
+		}
+		return DbConnect;
+	}
+	
+	public static Connection getConnection() throws Exception
+	{
+		Properties_File Prop = new Properties_File();
+		String  Url = Prop.dburl;
+		String UserName = Prop.user;
+		String Password = Prop.pswd;
+		byte[] psw = Password.getBytes();
+		EncryptDecrypt ED = new EncryptDecrypt(); // Decrypting the fetched DB password.
+		String DecryptPassword = ED.decrypt(psw);
+		
+		try
+		{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			if(con == null){
+				con=DriverManager.getConnection(Url,UserName,DecryptPassword);
+			}else
+				return con;
+			
+			//System.out.println("Connected");
+		}
+		catch(ClassNotFoundException se)
+		{
+	se.printStackTrace();
+			}
+			return con;
+		
+	}
+		
+		
+}
+
+		
